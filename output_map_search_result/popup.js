@@ -21,9 +21,9 @@ function extractAndDownload() {
         const address = anchor.href;
         results.push({ name, address });
     }
-    const csvContent = 'data:text/csv;charset=utf-8,' + results.map((e) => `${e.name},${e.address}`).join('\n');
+    const csvContent = '\uFEFF' + results.map((e) => `${e.name},${e.address}`).join('\n');
 
-    const encodedUri = encodeURI(csvContent);
+    const encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
     link.setAttribute('download', 'google_maps_results.csv');

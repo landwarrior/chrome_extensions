@@ -19,13 +19,19 @@ function extractAndDownload() {
         }
         const name = anchor.getAttribute('aria-label');
         const address = anchor.href;
-        results.push({ name, address });
+        results.push(`${name},${address}`);
     }
-    const csvContent = '\uFEFF' + results.map((e) => `${e.name},${e.address}`).join('\n');
+    // ここではまだCSV形式の文字列(UTF-8)
+    const csvContent = results.join('\r\n');
 
-    const encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
+    // Shift JISに変換
+    const unicodeArray = window.Encoding.stringToCode(csvContent);
+    const sjisArray = window.Encoding.convert(unicodeArray, { to: 'SJIS', from: 'UNICODE' });
+    const uint8Array = new Uint8Array(sjisArray);
+    const blob = new Blob([uint8Array], { type: 'text/csv' });
+
     const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
+    link.setAttribute('href', URL.createObjectURL(blob));
     link.setAttribute('download', 'google_maps_results.csv');
     document.body.appendChild(link);
     link.click();

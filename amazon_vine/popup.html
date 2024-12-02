@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 300px;
+      padding: 10px;
+    }
+
+    input {
+      width: 100%;
+      height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>検索単語を登録</h3>
+  <div style="display: flex; justify-content: center; gap: 15px;">
+    <div style="flex: 1 1 auto">
+      <input type="text" id="keyword" placeholder="検索したい単語を入力">
+    </div>
+    <div style="flex: 0 0 auto;">
+      <button id="add">追加</button>
+    </div>
+  </div>
+  <div id="keywordList"></div>
+  <script src="popup.js"></script>
+</body>
+
+</html>

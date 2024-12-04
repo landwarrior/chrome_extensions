@@ -3,7 +3,7 @@
     "name": "Amazon Vineの商品を見やすくする",
     "version": "1.0",
     "description": "Amazon Vineの商品を見やすくする",
-    "permissions": ["activeTab", "scripting", "storage"],
+    "permissions": ["activeTab", "storage"],
     "action": {
         "default_popup": "popup.html"
     },
